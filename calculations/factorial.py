@@ -1,8 +1,8 @@
-def factorial(n):
+def factorial(n: int) -> int:
     try:
         int(n)
     except ValueError:
-        return "Not an integer, try again."
+        return "not an int"
     
     if n < 0:
         return False
@@ -11,4 +11,4 @@ def factorial(n):
     return n * factorial(n-1)
 
 
-print(factorial(50))
+print(factorial("hej"))

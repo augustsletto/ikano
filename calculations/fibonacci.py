@@ -1,8 +1,8 @@
-def fibonacci(n):
+def fibonacci(n: int) -> int:
     try:
         int(n)
     except ValueError:
-        return "Not an integer, try again."
+        return "not an int"
     
     if n < 0:
         return False
@@ -14,4 +14,4 @@ def fibonacci(n):
         b = temp
     return a
         
-print(fibonacci(10))
+# print(fibonacci(10))
