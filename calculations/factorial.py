@@ -1,4 +1,9 @@
 def factorial(n):
+    try:
+        int(n)
+    except ValueError:
+        return "Not an integer, try again."
+    
     if n < 0:
         return False
     if n == 0:
