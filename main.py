@@ -8,6 +8,6 @@ from calculations.loan import loan
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return loan(100_000, 0.05, 48)
+@app.get("/fibonacci/{fibonacci_num}")
+async def root(fibonacci_num):
+    return {"fibonacci_num": fibonacci(fibonacci_num)}
