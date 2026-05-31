@@ -1,5 +1,5 @@
 import pytest
-from calculations.loan import loan
+from calculations.loan_repayment import loan
 from decimal import Decimal
 
 
