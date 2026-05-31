@@ -40,3 +40,4 @@ def test_bool_annual_rate():
 
 def test_bool_months():
     assert loan(100_000, 0.05, True) == "type(months) should be int: type: <class 'bool'>"
+    

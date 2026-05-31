@@ -1,8 +1,7 @@
 def factorial(n: int) -> int:
-    try:
-        int(n)
-    except ValueError:
-        return "not an int"
+    if isinstance(n, bool) or not isinstance(n, int):
+        return f"type(n) should be int: type: {type(n)}"
+
     
     if n < 0:
         return False
