@@ -27,3 +27,11 @@ def test_bool_f():
 def test_float():
     with pytest.raises(TypeError):
         factorial(4.5)
+
+def test_float_inf():
+    with pytest.raises(TypeError):
+        factorial(float("inf"))
+
+def test_none():
+    with pytest.raises(TypeError):
+        factorial(None)

@@ -70,3 +70,18 @@ def test_infinite_annual_rate():
     with pytest.raises(ValueError):
         loan_repayment(100_000, float("inf"), 48)
 
+def test_float_months():
+    with pytest.raises(TypeError):
+        loan_repayment(100_000, 0.05, 48.2)
+        
+def test_none_principal():
+    with pytest.raises(TypeError):
+        loan_repayment(None, 0.05, 48)
+        
+def test_none_annual_rate():
+    with pytest.raises(TypeError):
+        loan_repayment(100_000, None, 48)
+        
+def test_none_months():
+    with pytest.raises(TypeError):
+        loan_repayment(100_000, 0.05, None)

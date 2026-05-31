@@ -39,5 +39,5 @@ def loan_repayment(principal: float, annual_rate: float, months: int) -> Decimal
 
         
     
-# l = loan("hej", 0.05, 48)
+# l = loan_repayment(None, 0.05, 48)
 # print(l) # 100k, 5%, 48 months
