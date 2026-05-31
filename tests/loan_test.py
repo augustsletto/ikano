@@ -14,12 +14,6 @@ def test_zero_months():
     with pytest.raises(ValueError):
         loan(100_000, 0.05, 0)    
 
-# def test_zero_annual_rate():
-#     assert loan(100_000, 0, 48) == "0 Not valid. 'annual_rate' Must be higher than 0"
-    
-# def test_zero_months():
-#     assert loan(100_000, 0.05, 0) == "0 Not valid. 'months' Must be higher than 0"
-
 def test_negative_principal():
     with pytest.raises(ValueError):
         loan(-100_000, 0.05, 48)

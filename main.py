@@ -1,6 +1,13 @@
-def main():
-    print("Hello world")
+from fastapi import FastAPI
+
+from calculations.factorial import factorial
+from calculations.fibonacci import fibonacci
+from calculations.loan import loan
 
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return loan(100_000, 0.05, 48)
