@@ -12,33 +12,39 @@ Round money clearly.
 """
 from decimal import Decimal, ROUND_HALF_UP
 
+
 def loan(principal: float, annual_rate: float, months: int) -> float:
     
-    if isinstance(principal, (int, float)) and isinstance(annual_rate, (int, float)) and isinstance(months, int):
+    # Accepts only float and int for principal and annual_rate, 
+    # blocks bool specifically since it runs like 0 or 1
+    # only accepts int for months input
+    if isinstance (principal, bool) or not isinstance(principal, (int, float)):
+        return f"type(principal) should be int or float: type: {type(principal)}" 
+    
+    if isinstance (annual_rate, bool) or not isinstance(annual_rate, (int, float)):
+        return f"type(annual_rate) should be int or float: type: {type(annual_rate)}"
+    
+    if isinstance(months, bool) or not isinstance(months, int):
+        return f"type(months) should be int: type: {type(months)}"
+    
         
-        
-        
-        # handle 0 as input value
-        inputs = {"principal": principal, "annual_rate":annual_rate, "months":months}
-        for key, value in inputs.items():
-            if value <= 0:
-                return f"{value} Not valid. '{key}' Must be higher than "
-        
-        P = Decimal(str(principal))
-        r = Decimal(str(annual_rate)) / Decimal("12")
-        n = months
-        
-        # loan formula
-        M = P * (r*(1+r)**n / ((1+r)**n - 1))
-        
+    # handle 0 as input value
+    inputs = {"principal": principal, "annual_rate":annual_rate, "months":months}
+    for key, value in inputs.items():
+        if value <= 0:
+            return f"{value} Not valid. '{key}' Must be higher than 0"
+    
+    P = Decimal(str(principal))
+    r = Decimal(str(annual_rate)) / Decimal("12")
+    n = months
+    
+    # loan formula
+    M = P * (r*(1+r)**n / ((1+r)**n - 1))
+    
 
-        return M.quantize(Decimal("0.01"), ROUND_HALF_UP) # round up, two decimal places
-    return {
-        "type(principal) should be int or float": type(principal),
-        "type(annual_rate) should be int or float": type(annual_rate),
-        "type(months) should be int": type(months),
-    }
+    return M.quantize(Decimal("0.01"), ROUND_HALF_UP) # round up, two decimal places
     
     
-l = loan(100000.0, 0.05, 48.1)
+    
+l = loan(100000, 0.05, True)
 print(l) # 100k, 5%, 48 months
