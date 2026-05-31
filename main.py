@@ -16,25 +16,40 @@ class LoanFormat(BaseModel):
     annual_rate: float 
     months: int
 
+class LoanResponse(BaseModel):
+    monthly_repayment: str
 
-@app.post("/fibonacci/")
-async def fibonacci_page(n: int):
-    return fibonacci(n)
+class StandardInput(BaseModel):
+    n: int
+    
+class FibonacciResponse(BaseModel):
+    fibonacci_int: str
+
+class FactorialResponse(BaseModel):
+    factorial_int: str
 
 
-@app.post("/factorial/")
-async def factorial_page(n: int):
-    return factorial(n)
+@app.post("/fibonacci/", response_model=FibonacciResponse)
+async def fibonacci_page(fibonacci_formatted: StandardInput):
+    result = fibonacci(fibonacci_formatted.n)
+    
+    return FibonacciResponse(fibonacci_int=str(result))
 
 
-@app.post("/loan/")
-async def loan_page(p: LoanFormat):
+@app.post("/factorial/", response_model=FactorialResponse)
+async def factorial_page(factorial_formatted: StandardInput):
+    result = factorial(factorial_formatted.n)
+    return FactorialResponse(factorial_int=str(result))
+
+
+@app.post("/loan/", response_model=LoanResponse)
+async def loan_page(loan_formatted: LoanFormat):
     try:
         result = loan_repayment(
-            p.principal, 
-            p.annual_rate, 
-            p.months)
+            loan_formatted.principal, 
+            loan_formatted.annual_rate, 
+            loan_formatted.months)
         
-        return result
+        return LoanResponse(monthly_repayment=str(result))
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
