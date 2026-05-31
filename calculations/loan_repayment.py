@@ -1,19 +1,6 @@
-"""
-Loan formula
-M = P x [ r(1+r)^n / ((1+r)^n - 1) ]
-P = principal, r = monthly interest rate, n = number of months, M = monthly repayment.
-
-3 Loan repayment
-Inputs: principal, annual rate, months
-Output: monthly repayment
-Use decimal-safe handling.
-Handle zero-interest loans.
-Round money clearly.
-"""
 from decimal import Decimal, ROUND_HALF_UP
-
-
-def loan_repayment(principal: float, annual_rate: float, months: int) -> float:
+import math
+def loan_repayment(principal: float, annual_rate: float, months: int) -> Decimal:
     # Accepts only float and int for principal and annual_rate, 
     # blocks bool specifically since it runs like 0 or 1
     # only accepts int for months input
@@ -26,6 +13,11 @@ def loan_repayment(principal: float, annual_rate: float, months: int) -> float:
     if isinstance(months, bool) or not isinstance(months, int):
         raise TypeError("months must be an integer")
     
+    if not math.isfinite(principal):
+        raise ValueError("principal must be finite")
+    
+    if not math.isfinite(annual_rate):
+        raise ValueError("annual_rate must be finite")
 
     # handle 0 as input value
     if principal <= 0:

@@ -16,8 +16,6 @@ class LoanFormat(BaseModel):
     annual_rate: float 
     months: int
 
-class SimpleFormat(BaseModel):
-    n: int
 
 @app.post("/fibonacci/")
 async def fibonacci_page(n: int):
@@ -39,4 +37,4 @@ async def loan_page(p: LoanFormat):
         
         return result
     except ValueError as e:
-        raise HTTPException(status_code=400)
+        raise HTTPException(status_code=400, detail=str(e))
