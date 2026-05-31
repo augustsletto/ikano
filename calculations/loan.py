@@ -19,20 +19,20 @@ def loan(principal: float, annual_rate: float, months: int) -> float:
     # blocks bool specifically since it runs like 0 or 1
     # only accepts int for months input
     if isinstance (principal, bool) or not isinstance(principal, (int, float)):
-        return f"type(principal) should be int or float: type: {type(principal)}" 
+        raise TypeError("n must be an integer or a float") 
     
     if isinstance (annual_rate, bool) or not isinstance(annual_rate, (int, float)):
-        return f"type(annual_rate) should be int or float: type: {type(annual_rate)}"
+        raise TypeError("n must be an integer or a float")
     
     if isinstance(months, bool) or not isinstance(months, int):
-        return f"type(months) should be int: type: {type(months)}"
+        raise TypeError("n must be an integer")
     
         
     # handle 0 as input value
     inputs = {"principal": principal, "annual_rate":annual_rate, "months":months}
     for key, value in inputs.items():
         if value <= 0:
-            return f"{value} Not valid. '{key}' Must be higher than 0"
+            raise ValueError(f"{value} Not valid. '{key}' Must be higher than 0")
     
     P = Decimal(str(principal))
     r = Decimal(str(annual_rate)) / Decimal("12")
@@ -46,5 +46,5 @@ def loan(principal: float, annual_rate: float, months: int) -> float:
     
     
     
-l = loan(100000, 0.05, True)
-print(l) # 100k, 5%, 48 months
+# l = loan(0, 0.05, 48)
+# print(l) # 100k, 5%, 48 months
