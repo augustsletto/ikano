@@ -92,13 +92,3 @@ curl -X 'POST' \
 }
 ```
 
-
-### Assumptions and limitations
-Due to the assignment specifically being small and meant to act as a signal how my fundamental skills are, I am well aware that some functions are not up to par with production ready fintech code yet.
-
-Rounding is applied once at the final output to avoid errors mid-calculations. In production, I assume there are hard set rules as to how it should be handled, which is one of the things I'd want to get a deep understanding of. 
-
-The API also lacks authentication and rate limiting amongst other things. I've attempted to cover the most important edge cases in the tests, mostly around invalid inputs, but a production fintech product would need significantly more coverage.
-
-#### Final thoughts
-I'm extremely excited about the opportunity to build real fintech products and learn from a strong team. I can learn quickly, I have very high ambitions and extremely high-set goals for myself.
